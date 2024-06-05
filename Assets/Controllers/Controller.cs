@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // The pawn that this controller is controlling. 
+    //AKA main pawn playercontroller will be using
+    public Pawn pawn;
     void Start()
     {
         
