@@ -1,65 +1,108 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TankPawn : Pawn
 {
-
+    public GameObject shellPrefab;
+    //protected TankShooter shooter; 
+    // Implement ASAP
+    public float fireForce;
+    public float damageDone;
+    public float shellLifespan;
     public float speed = 10.0f;
     public float rotateSpeed = 10f;
 
+    [SerializeField]
+    private List<GameObject> _ammoTypes;
+    int _ammoIndex;
+
+
+
     // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Override means this Public void start might do, what it normally does in the parent script, 
+    /// so any changes made in Pawn will affect TankPawn.
+    /// </summary>
+    public override void Start()
     {
         base.Start();
+        //shooter = GetComponent<TankShooter>();
+
 
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
         base.Update();
     }
 
     public override void MoveForward()
     {
-
+        var transAmount = speed * Time.deltaTime;
+        transform.Translate(0, 0, transAmount);
 
     }
-
     public override void MoveBackward()
     {
-
+        var transAmount = speed * Time.deltaTime;
+        transform.Translate(0, 0, -transAmount);
 
     }
-
     public override void RotateClockWise()
     {
-
-
+        var rotateAmount = rotateSpeed * Time.deltaTime;
+        transform.Rotate(0, -rotateAmount, 0);
     }
-
     public override void RotateCounterClockWise()
     {
-
-
+        var rotateAmount = rotateSpeed * Time.deltaTime;
+        transform.Rotate(0, rotateAmount, 0);
     }
 
     public override void RotateTowards(Vector3 targetPosition)
     {
+        // Find the vector to our target 
+        Vector3 vectorToTarget = targetPosition = transform.position;
 
+        // Find the rotation to look down that vector 
+        Quaternion targetRotation = Quaternion.LookRotation(vectorToTarget, Vector3.up);
+
+
+        // Rotate closer to that vector, but don't rotate more than our turn speed allows in one frame
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed = Time.deltaTime);
 
     }
 
+
+
+
     public override void Shoot()
     {
-        throw new System.NotImplementedException();
+       // shooter.Shoot(_ammoTypes[_ammoIndex], fireForce, damageDone, shellLifespan);
+       // 6/11/2024 Implement ASAP
+        // Not really a debugb comment, but when someone is helping you debug something, communicate exactly what you're referrencing. 
+        // If I say I'm missing something in the context of a tutorial or template, that means I didn't finish it yet
+
     }
 
     public override void Switch()
     {
-        throw new System.NotImplementedException();
+
+
+        Debug.Log("T to switch Ammo Type ");
+        _ammoIndex++;
+        if (_ammoIndex > _ammoTypes.Count - 1)
+        {
+            _ammoIndex = 0;
+        }
+
+        // this passes info to the shooter to clarify which ammo types to switch to 
+        // Line 73 adds 1 to itself everytime Switch runs 
+        // Line 74, if that is greater than the amount of ammo types there are, it will reset it to zero, effectively looping it 
+
     }
+
 
 }

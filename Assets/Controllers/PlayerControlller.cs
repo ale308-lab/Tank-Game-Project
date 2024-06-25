@@ -22,7 +22,37 @@ public class PlayerControlller : Controller
     public override void Start()
     {
         base.Start();
+
+        // If we have game manager 
+        if (GameManager.instance.players != null)
+        {
+            // and if it can track players 
+            if (GameManager.instance.players != null)
+            {
+                // Register it to the GameManager
+                GameManager.instance.players.Add(this);
+            }
+        }
     }
+
+    // This will destory the player once it needs to r
+    public void OnDestroy()
+    {
+        // If we have the game mananger 
+        if (GameManager.instance.players != null)
+        {
+            // and if the game manager can track players
+            if (GameManager.instance.players != null)
+            {
+                // Register the player to the GameManager
+                // We added this so once a tank or player is removed
+                // it no longer takes up memory
+            }   GameManager.instance.players.Remove(this);
+        }
+    }
+
+
+
 
     // Update is called once per frame
     public override void Update()

@@ -54,9 +54,18 @@ public static GameManager instance;
         newPlayerObj.name = "Player 1";
 
         // Will spawn the pawn and connect it to the controller 
-        GameObject newPawnObj = Instantiate(tankPawnPrefab, playerSpawnTransform.position, playerSpawnTranform.rotation);
+        GameObject newPawnObj = Instantiate(tankPawnPrefab, playerSpawnTransform.position, playerSpawnTransform.rotation);
         newPawnObj.name = "Player 1's tank";
 
+        // Get the PlayerController component and Pawn component
+        Controller newController = newPlayerObj.GetComponent<Controller>();
+
+        Pawn newPawn = newPlayerObj.GetComponent<Pawn>();
+
+        // This will Hook them up together
+        newController.pawn = newPawn;
+        playerOne = newController as PlayerControlller;
+        Debug.Log(playerOne);
         // ^Will add in playerSpawn later
 
         // Get the PlayerController componet and Pawn component 
