@@ -7,13 +7,15 @@ public class Controller : MonoBehaviour
     // The pawn that this controller is controlling. 
     //AKA main pawn playercontroller will be using
     public Pawn pawn;
-    void Start()
+    public virtual void Start()
+        // As of 6/11/2024 not having either of these be virtual voids 
+        // caused a stack overflow.
     {
         
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         
     }
