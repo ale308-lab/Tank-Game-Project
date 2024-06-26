@@ -5,7 +5,7 @@ using UnityEngine;
 public class TankPawn : Pawn
 {
     public GameObject shellPrefab;
-    //protected TankShooter shooter; 
+    protected TankShooter shooter; 
     // Implement ASAP
     public float fireForce;
     public float damageDone;
@@ -80,7 +80,7 @@ public class TankPawn : Pawn
 
     public override void Shoot()
     {
-       // shooter.Shoot(_ammoTypes[_ammoIndex], fireForce, damageDone, shellLifespan);
+        shooter.Shoot(_ammoTypes[_ammoIndex], fireForce, damageDone, shellLifespan);
        // 6/11/2024 Implement ASAP
         // Not really a debugb comment, but when someone is helping you debug something, communicate exactly what you're referrencing. 
         // If I say I'm missing something in the context of a tutorial or template, that means I didn't finish it yet
