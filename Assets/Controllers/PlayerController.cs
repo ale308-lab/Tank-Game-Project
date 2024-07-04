@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
-public class PlayerControlller : Controller
+public class PlayerController : Controller
 {
     #region Floats and Keycodes 
     // This will be a list of each key that will be 

@@ -10,14 +10,14 @@ public class GameManager : MonoBehaviour
     /// </summary>
 public static GameManager instance;
 
-    public List<PlayerControlller> players;
+    public List<PlayerController> players;
     // Prefabs
     public GameObject playerControllerPrefab;
     public GameObject tankPawnPrefab;
     public Transform playerSpawnTransform;
     #endregion
 
-    public PlayerControlller playerOne;
+    public PlayerController playerOne;
     public TankPawn newTankPawn;
 
     private void Awake()
@@ -34,7 +34,7 @@ public static GameManager instance;
             Destroy(gameObject);
 
         }
-        players = new List<PlayerControlller>();
+        players = new List<PlayerController>();
 
     }
 
@@ -64,7 +64,7 @@ public static GameManager instance;
 
         // This will Hook them up together
         newController.pawn = newPawn;
-        playerOne = newController as PlayerControlller;
+        playerOne = newController as PlayerController;
         Debug.Log(playerOne);
         // ^Will add in playerSpawn later
 
